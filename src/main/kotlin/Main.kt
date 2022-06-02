@@ -1,28 +1,23 @@
-val name2:String = "top-level variable" // top-level variables
-var name3:String? = "mutable top-level variable" // mutable
-
-fun main() {
-    println ("Hello Kotlin")
-    val name:String = "Lea"
-    var name1:String = "Lea"
-    name1 = "hi Lea!"
-
-    name3 = "I like kotlin!"
-    name3 = null
-
-    println(name1)
-    println(name2)
-    println(name3)
+fun sayHello(item1:String, vararg item2:String) {
+    item2.forEach {item ->
+        println("$item1 $item")
+    }
 }
 
-// variables
-// 1. mutable variables, declared with var keywords
-// 2. local (only be used within the main() function) read-only variables, values can only be assigned once, use val keyword
+fun greetPerson(greeting: String = "Hello", name: String = "Kotlin") = println("$greeting $name")
+// what if the order of input parameters change
+// default values added
 
-// types in Kotlin are not null by default, string != nullable string
-// val name: String = null -> returns error
-// val name: String? = null -> nullable string, no error
 
-// we can omit type declaration because kotlin can infer the assignment of value
-val greeting = null
-val greeting2 = "string inference"
+
+fun main() {
+    val person = Person("Yi", "Wang") // no need to use new, a new instance of a class
+    // secondary constructor is not evoked
+    val person2 = Person() // secondary constructor is evoked
+    // init boxes are always run before the secondary constructor, in the order which they are defined
+    println(person.firstName)
+    person.nickName = "Shades"
+    println(person.nickName)
+
+    person.printInfo()
+}
